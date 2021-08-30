@@ -1,0 +1,195 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link href='style.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div id="wrapper">
+
+  <section>
+
+<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+<p><img id="output" width="200" /></p>
+
+
+
+    <h1 class="headline">Content Editable</h1>
+
+    <button id="editBtn" type="button">Edit Document</button>
+    <div id="editDocument">
+      <h1 id="title">A Nice Heading.</h1>
+      <p>Last Edited by <span id="author">Arjun Dixit</span>
+      </p>
+      <p id="content">Hello Name Is </p>
+    </div>
+ 
+<!--  -->
+
+
+<script>
+var loadFile = function(event) {
+  var image = document.getElementById('output');
+  image.src = URL.createObjectURL(event.target.files[0]);
+};
+
+if (typeof(Storage) !== "undefined") {
+  if (localStorage.getItem('image') !== null) {
+    editables[0].innerHTML = localStorage.getItem('image');
+  }
+
+
+</script>
+
+
+    
+
+<!--  -->
+
+  </section>
+</div>
+
+
+
+
+<script type="text/javascript">
+  var editBtn = document.getElementById('editBtn');
+var editables = document.querySelectorAll('#title, #author, #content');
+
+if (typeof(Storage) !== "undefined") {
+  if (localStorage.getItem('title') !== null) {
+    editables[0].innerHTML = localStorage.getItem('title');
+  }
+  if (localStorage.getItem('author') !== null) {
+    editables[1].innerHTML = localStorage.getItem('author');
+  }
+  if (localStorage.getItem('content') !== null) {
+    editables[2].innerHTML = localStorage.getItem('content');
+  }
+}
+
+editBtn.addEventListener('click', function(e) {
+  if (!editables[0].isContentEditable) {
+    editables[0].contentEditable = 'true';
+    editables[1].contentEditable = 'true';
+    editables[2].contentEditable = 'true';
+    editBtn.innerHTML = 'Save Changes';
+    editBtn.style.backgroundColor = '#6F9';
+  } else {
+    // Disable Editing
+    editables[0].contentEditable = 'false';
+    editables[1].contentEditable = 'false';
+    editables[2].contentEditable = 'false';
+    // Change Button Text and Color
+    editBtn.innerHTML = 'Enable Editing';
+    editBtn.style.backgroundColor = '#F96';
+    // Save the data in localStorage 
+    for (var i = 0; i < editables.length; i++) {
+      localStorage.setItem(editables[i].getAttribute('id'), editables[i].innerHTML);
+    }
+  }
+});
+
+setInterval(function() {
+  for (var i = 0; i < editables.length; i++) {
+    localStorage.setItem(editables[i].getAttribute('id'), editables[i].innerHTML);
+  }
+}, 5000);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<h1 class="headline2"></h1>
+
+    <button id="editBtn2" type="button">Edit Document</button>
+    <div id="editDocument2">
+      <h1 id="title2"><strong>Welcome to free demo.</strong></h1>
+    <!--   <p>Last Edited by <span id="author">Arjun Dixit</span>
+      </p>
+      <p id="content">Hello Name Is </p> -->
+    </div>
+ 
+<!--  -->
+
+
+<script>
+var loadFile = function(event) {
+  var image = document.getElementById('output');
+  image.src = URL.createObjectURL(event.target.files[0]);
+};
+
+</script>
+
+<script type="text/javascript">
+  var editBtn2 = document.getElementById('editBtn2');
+var editables2 = document.querySelectorAll('#title2');
+
+if (typeof(Storage) !== "undefined") {
+  if (localStorage.getItem('title2') !== null) {
+    editables2[0].innerHTML = localStorage.getItem('title2');
+  }
+
+  // if (localStorage.getItem('author') !== null) {
+  //   editables[1].innerHTML = localStorage.getItem('author');
+  // }
+  // if (localStorage.getItem('content') !== null) {
+  //   editables[2].innerHTML = localStorage.getItem('content');
+  // }
+
+}
+
+editBtn2.addEventListener('click', function(e) {
+  if (!editables2[0].isContentEditable) {
+    editables2[0].contentEditable = 'true';
+
+    // editables[1].contentEditable = 'true';
+    // editables[2].contentEditable = 'true';
+
+    editBtn2.innerHTML = 'Save Changes';
+    editBtn2.style.backgroundColor = '#6F9';
+  } else {
+    // Disable Editing
+    editables2[0].contentEditable = 'false';
+
+    // editables[1].contentEditable = 'false';
+    // editables[2].contentEditable = 'false';
+
+    // Change Button Text and Color
+    editBtn2.innerHTML = 'Enable Editing';
+    editBtn2.style.backgroundColor = '#F96';
+    // Save the data in localStorage 
+    for (var i = 0; i < editables2.length; i++) {
+      localStorage.setItem(editables2[i].getAttribute('id'), editables2[i].innerHTML);
+    }
+  }
+});
+
+setInterval(function() {
+  for (var i = 0; i < editables2.length; i++) {
+    localStorage.setItem(editables2[i].getAttribute('id'), editables2[i].innerHTML);
+  }
+}, 5000);
+</script>
